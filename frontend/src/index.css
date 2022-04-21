@@ -1,0 +1,89 @@
+/* CSS RESET */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background-color: antiquewhite;
+}
+
+/* ROOT, APP & CROSS SECTION CLASSES*/
+
+#root {
+  height: 100%;
+}
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.max-width-1200 {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+/* HEADER */
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px;
+  background-color: aqua;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #000000;
+}
+
+/* FOOTER */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 10px;
+  background-color: aqua;
+}
+
+/* RESOURCES */
+.resources-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.category-navbar {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.category-link {
+  text-decoration: dotted;
+  color: #000000;
+}
+
+/* FORM */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+/* XXXXXX */
+/* XXXXXX */
+/* XXXXXX */
