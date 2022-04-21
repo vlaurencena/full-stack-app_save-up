@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { gql, useQuery } from '@apollo/client';
+import ReactMarkdown from "react-markdown";
 
 const SingleResource = () => {
 
@@ -37,10 +38,10 @@ const SingleResource = () => {
     if (error) return <p>Error...</p>
 
     return (
-        <div className="max-width-1200">
+        <div className="flex-grow-1 max-width-1200">
             <h1>{data.resource.data.attributes.title}</h1>
             <p>Published on {formatMyDate(data.resource.data.attributes.publishedAt)}</p>
-            <p>{data.resource.data.attributes.body}</p>
+            <ReactMarkdown>{data.resource.data.attributes.body}</ReactMarkdown>
         </div>
     )
 }

@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
 
     const [email, setEmail] = useState("sub-zero@mortalcombat.com");
     const [password, setPassword] = useState("Strapi2022");
+    const history = useHistory();
 
     const tryLogin = () => {
         console.log("workin");
@@ -21,6 +22,8 @@ const Login = (props) => {
                 console.log('User token', response.data.jwt);
                 props.setAuthenticated(true);
                 localStorage.setItem("save_up_token", response.data.jwt);
+                props.setUserToken(response.data.jwt);
+                history.push("/dashboard");
             })
             .catch((error) => {
                 // Handle error.

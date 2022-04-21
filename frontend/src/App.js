@@ -24,6 +24,7 @@ import {
   ApolloProvider,
 } from "@apollo/client";
 import { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 
 
 const App = () => {
@@ -38,68 +39,80 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log(userToken);
+  //  console.log(userToken);
     userToken !== undefined && setAuthenticated(true);
   }, [userToken]);
 
   const client = new ApolloClient({
     uri: "http://localhost:1337/graphql",
     cache: new InMemoryCache(),
-    headers: {Authorization: `Bearer ${userToken}`}
+    headers:  authenticated ? { Authorization: `Bearer ${userToken}` } : null
   });
 
 
   // NOT AUTHENTICATED
-  if (!authenticated) return (
-    <Router>
-      <div className="app">
-        <NotAuthenticatedHeader />
-        <Switch>
-          <Route path="/login">
-            <Login setAuthenticated={setAuthenticated} />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
-        <Footer />
-      </div>
-    </Router >
-  )
+  if (!authenticated) {
+    return (
+      <ApolloProvider client={client}>
+        <Router>
+          <div className="app">
+            <NotAuthenticatedHeader />
+            <Switch>
+              <Route path="/login">
+                <Login
+                  setAuthenticated={setAuthenticated}
+                  setUserToken={setUserToken}
+                />
+              </Route>
+              <Route path="/register">
+                <Register />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+              <Route path="*">
+                <PageNotFound />
+              </Route>
+            </Switch>
+            <Footer />
+          </div>
+        </Router >
+      </ApolloProvider>
+    )
+  } else {
+    //AUTHENTICATED
+    return (
+      <ApolloProvider client={client}>
+        <Router>
+          <div className="app">
+            <AuthenticatedHeader setAuthenticated={setAuthenticated} />
+            <Switch>
+              <Route path="/dashboard">
+                <Dashboard />
+              </Route>
+              <Route path="/resources" exact>
+                <Resources token={userToken} />
+              </Route>
+              <Route path="/resources/category/:id">
+                <Category />
+              </Route>
+              <Route path="/resources/:id">
+                <SingleResource />
+              </Route>
+              <Route path="/">
+                <Redirect to="/dashboard" />
+              </Route>
+              <Route path="*">
+                <PageNotFound />
+              </Route>
+            </Switch>
+            <Footer />
+          </div>
+        </Router >
+      </ApolloProvider>
+    );
+  }
 
-  return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div className="app">
-          <AuthenticatedHeader setAuthenticated={setAuthenticated}/>
-          <Switch>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-            <Route path="/resources" exact>
-              <Resources token={userToken} />
-            </Route>
-            <Route path="/resources/category/:id">
-              <Category />
-            </Route>
-            <Route path="/resources/:id">
-              <SingleResource />
-            </Route>
-            <Route path="*">
-              <PageNotFound />
-            </Route>
-          </Switch>
-          <Footer />
-        </div>
-      </Router >
-    </ApolloProvider>
-  );
 }
 
 export default App;

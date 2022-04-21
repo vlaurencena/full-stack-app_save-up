@@ -9,10 +9,10 @@ function AuthenticatedHeader(props) {
   }
 
   return (
-    <div className="navbar">
+    <div className="navbar max-width-1200">
       <NavLink to="/dashboard">Dashboard</NavLink>
       <NavLink to="/resources">Resources</NavLink>
-      <button onClick={logout}>Logout</button>
+      <button className="button-style logout" onClick={logout}>Logout</button>
     </div>
   )
 }
