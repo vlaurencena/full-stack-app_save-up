@@ -4,7 +4,7 @@ import { BsGithub } from 'react-icons/bs';
 
 const Footer = () => {
   return (
-    <footer class="footer">
+    <footer className="footer">
       <p>
         Copyright ©
         <script>

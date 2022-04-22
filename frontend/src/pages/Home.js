@@ -5,7 +5,6 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
-
 const HOME_INFO = gql`
   query GetHomeInfo {
     home {

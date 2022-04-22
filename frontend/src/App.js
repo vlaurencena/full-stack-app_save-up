@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useState } from "react";
 
@@ -14,8 +13,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Category from "./pages/Category";
 import Footer from "./components/Footer";
 import NotAuthenticatedHeader from "./components/NotAuthenticatedHeader";
-
-
+import Balance from "./pages/Balance";
 
 // Apollo Client
 import {
@@ -39,14 +37,14 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-  //  console.log(userToken);
+    //  console.log(userToken);
     userToken !== undefined && setAuthenticated(true);
   }, [userToken]);
 
   const client = new ApolloClient({
     uri: "http://localhost:1337/graphql",
     cache: new InMemoryCache(),
-    headers:  authenticated ? { Authorization: `Bearer ${userToken}` } : null
+    headers: authenticated ? { Authorization: `Bearer ${userToken}` } : null
   });
 
 
@@ -98,6 +96,9 @@ const App = () => {
               </Route>
               <Route path="/resources/:id">
                 <SingleResource />
+              </Route>
+              <Route path="/balance">
+                <Balance />
               </Route>
               <Route path="/">
                 <Redirect to="/dashboard" />
