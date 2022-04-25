@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "authenticated_navbars",
+  "info": {
+    "singularName": "authenticated-navbar",
+    "pluralName": "authenticated-navbars",
+    "displayName": "AuthenticatedNavbar",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "AuthenticatedNavbarLink": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page.button"
+    }
+  }
+}

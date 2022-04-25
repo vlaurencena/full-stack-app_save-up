@@ -4,7 +4,8 @@
   "info": {
     "singularName": "entry",
     "pluralName": "entries",
-    "displayName": "Entry"
+    "displayName": "Entry",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,11 +29,9 @@
       "type": "decimal",
       "required": true
     },
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "entries"
+    "userEmail": {
+      "type": "string",
+      "required": true
     }
   }
 }
