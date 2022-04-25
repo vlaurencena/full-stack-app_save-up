@@ -12,7 +12,7 @@ const Footer = () => {
         </script>
         vlaurencena
       </p>
-      <a href="https://github.com/vlaurencena" target="_blank">
+      <a href="https://github.com/vlaurencena" target="_blank" rel="noreferrer">
       <BsGithub /></a>
     </footer>
   )

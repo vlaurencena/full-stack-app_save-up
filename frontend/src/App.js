@@ -47,7 +47,6 @@ const App = () => {
     headers: authenticated ? { Authorization: `Bearer ${userToken}` } : null
   });
 
-
   // NOT AUTHENTICATED
   if (!authenticated) {
     return (
@@ -58,7 +57,6 @@ const App = () => {
             <Switch>
               <Route path="/login">
                 <Login
-                  setAuthenticated={setAuthenticated}
                   setUserToken={setUserToken}
                 />
               </Route>
@@ -86,7 +84,7 @@ const App = () => {
             <AuthenticatedHeader setAuthenticated={setAuthenticated} />
             <Switch>
               <Route path="/dashboard">
-                <Dashboard />
+                <Dashboard token={userToken}/>
               </Route>
               <Route path="/resources" exact>
                 <Resources token={userToken} />
@@ -98,7 +96,7 @@ const App = () => {
                 <SingleResource />
               </Route>
               <Route path="/balance">
-                <Balance />
+                <Balance token={userToken} />
               </Route>
               <Route path="/">
                 <Redirect to="/dashboard" />

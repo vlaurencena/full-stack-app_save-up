@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
+import ResourcePreview from "../components/ResourcePreview";
 
 const RESOURCES = gql`
   query GetResources {
@@ -30,15 +31,7 @@ const CATEGORIES = gql`
   }
 `;
 
-const Resources = (props) => {
-
-  console.log(props);
-
-  const authorization = {
-    "Authorization": `Bearer ${props.token}`
-  }
-
-  console.log(authorization);
+const Resources = () => {
 
   const { loading: resourcesQueryLoading, data: resources, error: resourcesQueryError } = useQuery(RESOURCES);
   const { loading: categoriesQueryLoading, data: categories, error: categoriesQueryError } = useQuery(CATEGORIES);
@@ -46,15 +39,8 @@ const Resources = (props) => {
   if (resourcesQueryLoading || categoriesQueryLoading) return <p>Loading...</p>
   if (resourcesQueryError || categoriesQueryError) return <p>Error...</p>
 
-  console.log(resources);
-  console.log(categories);
-
   ///////////////////////////// 
 
-  function formatMyDate(value) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(value).toLocaleDateString('en-US', options);
-  }
 
   return (
     <div className="resources-container max-width-1200 flex-grow-1">
@@ -67,12 +53,13 @@ const Resources = (props) => {
         ))}
       </nav>
       {resources.resources.data.map(resource => (
-        <div key={resource.id}>
-          <h2>{resource.attributes.title}</h2>
-          <p>Published on {formatMyDate(resource.attributes.publishedAt)}</p>
-          <p>{resource.attributes.body.substring(0, 200)}...</p>
-          <Link to={`/resources/${resource.id}`}>Read more...</Link>
-        </div>
+        <ResourcePreview
+          key={resource.id}
+          id={resource.id}
+          title={resource.attributes.title}
+          body={resource.attributes.body}
+          publishedAt={resource.attributes.publishedAt}
+        />
       ))}
     </div>
   )
