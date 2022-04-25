@@ -2,6 +2,16 @@ Hi!
 
 This is Save Up, a full-stack app built with React (frontend) and Strapi (backend).
 
+## Description
+
+This is an app that helps you keep track of your expenses and savings. You can also access resources to learn how to sava many, which are exclusive to Save Up users.
+
+It still has a basic functionality. In the future, it should also have:
+* Possibility to edit/delete entries.
+* Register new user form.
+* Rensponsive design.
+* Set and track saving related objectives.
+
 ## Getting started
 
 To run this project on your machine, please follow these steps.
