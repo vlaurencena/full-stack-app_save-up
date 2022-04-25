@@ -8,7 +8,7 @@ To run this project on your machine, please follow these steps.
 
 ### 1)
 First, `cd` to the route where you want to install this app.
-
+ˆ
 ### 2)
 Then, `git clone` this repisotory.
 
