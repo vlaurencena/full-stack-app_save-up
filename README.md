@@ -8,7 +8,7 @@ To run this project on your machine, please follow these steps.
 
 ### 1)
 First, `cd` to the route where you want to install this app.
-ˆ
+
 ### 2)
 Then, `git clone` this repisotory.
 
@@ -17,7 +17,7 @@ Now, you'll have downloaded this app that has two main folders:
 * backend
 
 ### 3)
-`cd` to the backend folder, and run the commands `npm install` and `npm run develop`.
+`cd` to the backend folder, and run the commands `npm install` and `npm start`.
 
 The server should be running on port http://localhost:1337/. 
 
